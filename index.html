@@ -6,6 +6,8 @@
     <title>Hot Games +18 | Traducciones Ren'Py & RPGM</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fuente Gamer Profesional para el Logo -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,9 +17,14 @@
         <a href="https://discord.gg/pzjjTbkc" target="_blank" class="discord"><i class="fab fa-discord"></i></a>
     </div>
 
-    <!-- Barra de Navegación -->
+    <!-- Barra de Navegación (Nuevo Logo Cool) -->
     <nav class="navbar">
-        <a href="index.html" class="logo"><i class="fas fa-fire"></i> HOT GAMES</a>
+        <a href="index.html" class="logo-container">
+            <i class="fas fa-fire-flame-curved logo-icon"></i>
+            <div class="logo-text">
+                <span class="hot">HOT</span><span class="games">GAMES</span>
+            </div>
+        </a>
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#catalogo">Catálogo +18</a></li>
@@ -84,7 +91,6 @@
     <!-- Script para la Búsqueda -->
     <script>
         const searchInput = document.getElementById('searchInput');
-        const gameCards = document.querySelectorAll('.game-card');
         const filterBtns = document.querySelectorAll('.filter-btn');
         let activeMotor = 'all';
 
