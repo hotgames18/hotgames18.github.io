@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Juego Recomendado Ejemplo",
+    "version": "v1.0",
+    "motor": "renpy",
+    "generos": "Romance, Milf, Recomendado",
+    "resumen": "Este es un juego de prueba para mostrar cómo funciona la sección de recomendados.",
+    "img1": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
+    "archivo": "#",
+    "fecha": "2024-01-15"
+  },
+  {
+    "nombre": "Juego Finalizado Ejemplo",
+    "version": "Completo",
+    "motor": "rpgm",
+    "generos": "RPG, Fantasía, Finalizado",
+    "resumen": "Este es un juego de prueba para la sección de finalizados.",
+    "img1": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2069&auto=format&fit=crop",
+    "archivo": "#",
+    "fecha": "2024-01-10"
+  }
+]

@@ -4,127 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hot Games +18 | Traducciones Ren'Py & RPGM</title>
+    <link rel="icon" type="image/png" href="https://hotgames18.github.io/images/favicon.png">
+    <meta property="og:title" content="Hot Games +18 | Traducciones Profesionales">
+    <meta property="og:description" content="Descarga traducciones al español de juegos Ren'Py y RPGM. Zona VIP disponible.">
+    <meta property="og:image" content="https://hotgames18.github.io/images/banner-redes.jpg">
+    <meta property="og:url" content="https://hotgames18.github.io/">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fuente Gamer Profesional para el Logo -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Botones Flotantes de Redes Sociales -->
     <div class="social-float">
         <a href="https://t.me/+rrlCyGExPJo3MzEx" target="_blank" class="telegram"><i class="fab fa-telegram"></i></a>
         <a href="https://discord.gg/pzjjTbkc" target="_blank" class="discord"><i class="fab fa-discord"></i></a>
     </div>
 
-    <!-- Barra de Navegación (Nuevo Logo Cool) -->
     <nav class="navbar">
         <a href="index.html" class="logo-container">
             <i class="fas fa-fire-flame-curved logo-icon"></i>
-            <div class="logo-text">
-                <span class="hot">HOT</span><span class="games">GAMES</span>
-            </div>
+            <div class="logo-text"><span class="hot">HOT</span><span class="games">GAMES</span></div>
         </a>
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#catalogo">Catálogo +18</a></li>
-            <li><a href="#vip">Zona VIP</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#recomendados">Top</a></li>
+            <li><a href="#finalizados">Completos</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#vip">VIP</a></li>
         </ul>
     </nav>
 
-    <!-- Inicio / Hero -->
     <header id="inicio">
         <div class="hero-content">
             <h1>HOT <span>GAMES</span></h1>
             <p class="subtitle">Traducciones profesionales al español para juegos Ren'Py y RPGM.</p>
-            <div class="warning-badge">
-                <i class="fas fa-exclamation-triangle"></i> CONTENIDO EXCLUSIVO +18 <i class="fas fa-exclamation-triangle"></i>
-            </div>
+            <div class="warning-badge"><i class="fas fa-exclamation-triangle"></i> CONTENIDO EXCLUSIVO +18 <i class="fas fa-exclamation-triangle"></i></div>
             <a href="#catalogo" class="btn-neon">VER CATÁLOGO <i class="fas fa-arrow-down"></i></a>
         </div>
     </header>
 
-    <!-- Catálogo de Juegos -->
-    <section id="catalogo" class="container">
-        <h2 class="section-title">Juegos Traducidos</h2>
+    <section id="recomendados" class="container special-section">
+        <h2 class="section-title"><i class="fas fa-star"></i> Juegos Recomendados <i class="fas fa-star"></i></h2>
+        <div class="game-grid" id="grid-recomendados"><p class="loading-text">Cargando juegos...</p></div>
+    </section>
 
-        <!-- BARRA DE BÚSQUEDA Y FILTROS -->
+    <section id="finalizados" class="container special-section">
+        <h2 class="section-title"><i class="fas fa-flag-checkered"></i> Juegos Finalizados</h2>
+        <div class="game-grid" id="grid-finalizados"><p class="loading-text">Cargando juegos...</p></div>
+    </section>
+
+    <section id="catalogo" class="container">
+        <h2 class="section-title">Catálogo Completo</h2>
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar juego por nombre o categoría (Ej: Romance, RPGM)..." class="search-input">
+            <input type="text" id="searchInput" placeholder="Buscar juego por nombre o categoría..." class="search-input">
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">Todos</button>
                 <button class="filter-btn" data-filter="renpy">Ren'Py</button>
                 <button class="filter-btn" data-filter="rpgm">RPGM</button>
             </div>
         </div>
-        
-        <div class="game-grid" id="gameGrid">
-            <!-- Aquí se pegarán las tarjetas de los juegos que generes -->
-        </div>
+        <div class="game-grid" id="gameGrid"><p class="loading-text">Cargando juegos...</p></div>
     </section>
 
-    <!-- Zona VIP -->
+    <!-- ZONA VIP CONTACTO DIRECTO -->
     <section id="vip">
         <div class="container vip-container">
             <h2 class="section-title"><i class="fas fa-crown"></i> Zona VIP</h2>
             <div class="vip-box">
-                <h3>Acceso Anticipado y Descargas Directas</h3>
-                <p>Únete a nuestra comunidad VIP por solo <strong>$2 USD/mes</strong>. Sin anuncios, sin acortadores, descargas directas por Telegram y soporte prioritario.</p>
-                <p class="vip-instruction">Haz clic en el botón, realiza el pago y recibirás acceso al canal VIP exclusivo de Telegram.</p>
-                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=yordanmortiz@yahoo.com&item_name=Subscripcion+Hot+Games+VIP&amount=2&currency_code=USD" target="_blank" class="btn-vip"><i class="fab fa-paypal"></i> HACERME VIP $2/mes</a>
+                <h3>Acceso VIP por $2 USD/mes</h3>
+                <p>Descargas directas, sin acortadores y acceso al canal exclusivo de Telegram.</p>
+                <p class="vip-instruction">1. Haz clic en el botón para ir a mi Telegram.<br>2. Envíame la captura de pantalla de tu pago por PayPal.<br>3. Recibirás el enlace de acceso al canal VIP.</p>
+                <a href="https://t.me/durazco" target="_blank" class="btn-vip"><i class="fab fa-telegram"></i> CONTACTAR POR TELEGRAM</a>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
     <section id="contacto" class="container">
         <h2 class="section-title">Pide tu Traducción</h2>
-        <p class="contact-text">¿Eres desarrollador o buscas un juego específico en español? Escríbeme.</p>
+        <p class="contact-text">¿Eres desarrollador o buscas un juego específico? Escríbeme.</p>
         <a href="mailto:gameshotboss@gmail.com" class="btn-neon"><i class="fas fa-envelope"></i> CONTACTAR</a>
     </section>
 
     <footer>
-        <p>&copy; 2024 Hot Games. Todos los derechos reservados. Sitio solo para mayores de 18 años.</p>
+        <p>&copy; 2024 Hot Games. Todos los derechos reservados.</p>
+        <p class="disclaimer">Todos los juegos aquí listados son propiedad de sus respectivos creadores. Las traducciones son fan-made y sin fines de lucro.</p>
     </footer>
 
-    <!-- Script para la Búsqueda -->
     <script>
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
         let activeMotor = 'all';
-
         searchInput.addEventListener('input', filterGames);
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeMotor = btn.getAttribute('data-filter');
-                filterGames();
-            });
-        });
-
-        function filterGames() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const currentCards = document.querySelectorAll('.game-card');
-            
-            currentCards.forEach(card => {
-                const name = card.getAttribute('data-name').toLowerCase();
-                const categories = card.getAttribute('data-categories').toLowerCase();
-                const motor = card.getAttribute('data-motor').toLowerCase();
-
-                const matchesSearch = name.includes(searchTerm) || categories.includes(searchTerm);
-                const matchesMotor = activeMotor === 'all' || motor === activeMotor;
-
-                if (matchesSearch && matchesMotor) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        filterBtns.forEach(btn => { btn.addEventListener('click', () => { filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeMotor = btn.getAttribute('data-filter'); filterGames(); }); });
+        function filterGames() { const searchTerm = searchInput.value.toLowerCase(); const currentCards = document.querySelectorAll('#gameGrid .game-card'); currentCards.forEach(card => { const name = card.getAttribute("data-name").toLowerCase(); const categories = card.getAttribute("data-categories").toLowerCase(); const motor = card.getAttribute("data-motor").toLowerCase(); const matchesSearch = name.includes(searchTerm) || categories.includes(searchTerm); const matchesMotor = activeMotor === 'all' || motor === activeMotor; card.style.display = (matchesSearch && matchesMotor) ? 'block' : 'none'; }); }
+        
+        function crearTarjeta(juego) { const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM"; return `<div class="game-card" data-name="${juego.nombre}" data-categories="${juego.generos}" data-motor="${juego.motor}"><div class="card-img" style="background-image: url('${juego.img1}');"><span class="badge ${juego.motor}">${motorTexto}</span></div><div class="card-info"><h3>${juego.nombre} <span style="font-size: 0.8rem; color: #888;">(${juego.version})</span></h3><p>${juego.resumen.substring(0, 80)}...</p><div class="card-meta"><span><i class="fas fa-calendar"></i> ${juego.fecha}</span></div><a href="${juego.archivo}" class="btn-download"><i class="fas fa-play"></i> Ver Juego</a></div></div>`; }
+        
+        async function cargarJuegos() {
+            try { const response = await fetch('games.json'); const juegos = await response.json(); const gridRec = document.getElementById("grid-recomendados"); const gridFin = document.getElementById("grid-finalizados"); const gridMain = document.getElementById("gameGrid"); gridRec.innerHTML = ''; gridFin.innerHTML = ''; gridMain.innerHTML = ''; let recCount = 0; let finCount = 0; juegos.forEach(juego => { const tarjetaHTML = crearTarjeta(juego); gridMain.innerHTML += tarjetaHTML; const cats = juego.generos.toLowerCase(); if (cats.includes("recomendado") && recCount < 5) { gridRec.innerHTML += tarjetaHTML; recCount++; } if (cats.includes("finalizado") && finCount < 5) { gridFin.innerHTML += tarjetaHTML; finCount++; } }); if(recCount === 0) gridRec.innerHTML = '<p>No hay juegos recomendados aún.</p>'; if(finCount === 0) gridFin.innerHTML = '<p>No hay juegos finalizados aún.</p>'; } catch (error) { console.error("Error cargando juegos:", error); document.getElementById("gameGrid").innerHTML = '<p>Error al cargar los juegos.</p>'; }
         }
+        cargarJuegos();
     </script>
-
 </body>
 </html>
