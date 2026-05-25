@@ -8,10 +8,11 @@
     <meta property="og:title" content="Hot Games +18 | Traducciones Profesionales">
     <meta property="og:description" content="Descarga traducciones al español de juegos Ren'Py y RPGM. Zona VIP disponible.">
     <meta property="og:image" content="https://hotgames18.github.io/images/banner-redes.jpg">
-    <meta property="og:url" content="https://hotgames18.github.io/">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
 
@@ -35,11 +36,38 @@
     </nav>
 
     <header id="inicio">
-        <div class="hero-content">
-            <h1>HOT <span>GAMES</span></h1>
-            <p class="subtitle">Traducciones profesionales al español para juegos Ren'Py y RPGM.</p>
-            <div class="warning-badge"><i class="fas fa-exclamation-triangle"></i> CONTENIDO EXCLUSIVO +18 <i class="fas fa-exclamation-triangle"></i></div>
-            <a href="#catalogo" class="btn-neon">VER CATÁLOGO <i class="fas fa-arrow-down"></i></a>
+        <!-- Swiper Slider -->
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 (Cambia la imagen y el título) -->
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <span class="badge renpy">Ren'Py</span>
+                        <h2>Soulmate + WTMOD</h2>
+                        <p>Traducción completa disponible.</p>
+                        <a href="soulmate-wtmod-incesto.html" class="btn-neon">Ver Juego <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2069&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <span class="badge rpgm">RPGM</span>
+                        <h2>Wedding Roaming</h2>
+                        <p>Juego finalizado al 100%.</p>
+                        <a href="wedding-roaming.html" class="btn-neon">Ver Juego <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');">
+                    <div class="slide-content">
+                        <span class="badge renpy">Ren'Py</span>
+                        <h2>Próximo Lanzamiento</h2>
+                        <p>Traducción en progreso...</p>
+                        <a href="#catalogo" class="btn-neon">Ver Catálogo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
     </header>
 
@@ -66,15 +94,14 @@
         <div class="game-grid" id="gameGrid"><p class="loading-text">Cargando juegos...</p></div>
     </section>
 
-    <!-- ZONA VIP CONTACTO DIRECTO -->
     <section id="vip">
         <div class="container vip-container">
             <h2 class="section-title"><i class="fas fa-crown"></i> Zona VIP</h2>
             <div class="vip-box">
-                <h3>Acceso VIP por $2 USD/mes</h3>
-                <p>Descargas directas, sin acortadores y acceso al canal exclusivo de Telegram.</p>
-                <p class="vip-instruction">1. Haz clic en el botón para ir a mi Telegram.<br>2. Envíame la captura de pantalla de tu pago por PayPal.<br>3. Recibirás el enlace de acceso al canal VIP.</p>
-                <a href="https://t.me/durazco" target="_blank" class="btn-vip"><i class="fab fa-telegram"></i> CONTACTAR POR TELEGRAM</a>
+                <h3>Acceso VIP Automático</h3>
+                <p>Únete por solo <strong>$2 USD/mes</strong>. Sin anuncios, sin acortadores, descargas directas por Telegram.</p>
+                <p class="vip-instruction">Haz clic en el botón, realiza el pago y <strong>Ko-fi te enviará automáticamente</strong> el enlace de acceso al canal VIP.</p>
+                <a href="https://ko-fi.com/TU_ENLACE_KOFI_AQUI" target="_blank" class="btn-vip"><i class="fas fa-mug-hot"></i> HACERME VIP $2/mes</a>
             </div>
         </div>
     </section>
@@ -90,6 +117,8 @@
         <p class="disclaimer">Todos los juegos aquí listados son propiedad de sus respectivos creadores. Las traducciones son fan-made y sin fines de lucro.</p>
     </footer>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -104,6 +133,14 @@
             try { const response = await fetch('games.json'); const juegos = await response.json(); const gridRec = document.getElementById("grid-recomendados"); const gridFin = document.getElementById("grid-finalizados"); const gridMain = document.getElementById("gameGrid"); gridRec.innerHTML = ''; gridFin.innerHTML = ''; gridMain.innerHTML = ''; let recCount = 0; let finCount = 0; juegos.forEach(juego => { const tarjetaHTML = crearTarjeta(juego); gridMain.innerHTML += tarjetaHTML; const cats = juego.generos.toLowerCase(); if (cats.includes("recomendado") && recCount < 5) { gridRec.innerHTML += tarjetaHTML; recCount++; } if (cats.includes("finalizado") && finCount < 5) { gridFin.innerHTML += tarjetaHTML; finCount++; } }); if(recCount === 0) gridRec.innerHTML = '<p>No hay juegos recomendados aún.</p>'; if(finCount === 0) gridFin.innerHTML = '<p>No hay juegos finalizados aún.</p>'; } catch (error) { console.error("Error cargando juegos:", error); document.getElementById("gameGrid").innerHTML = '<p>Error al cargar los juegos.</p>'; }
         }
         cargarJuegos();
+
+        // Iniciar Swiper
+        const swiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            effect: 'fade'
+        });
     </script>
 </body>
 </html>
