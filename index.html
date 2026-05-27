@@ -133,16 +133,11 @@
                 const gridRec = document.getElementById("grid-recomendados"); 
                 const gridFin = document.getElementById("grid-finalizados"); 
                 const gridMain = document.getElementById("gameGrid"); 
-                const heroWrapper = document.getElementById("hero-wrapper"); // Contenedor del carrusel
+                const heroWrapper = document.getElementById("hero-wrapper"); 
                 
-                gridRec.innerHTML = ''; 
-                gridFin.innerHTML = ''; 
-                gridMain.innerHTML = ''; 
-                heroWrapper.innerHTML = ''; // Limpiamos el carrusel
+                gridRec.innerHTML = ''; gridFin.innerHTML = ''; gridMain.innerHTML = ''; heroWrapper.innerHTML = ''; 
                 
-                let recCount = 0; 
-                let finCount = 0; 
-                let heroCount = 0; // Contador para el carrusel
+                let recCount = 0; let finCount = 0; let heroCount = 0; 
 
                 juegos.forEach(juego => { 
                     const tarjetaHTML = crearTarjeta(juego); 
@@ -152,7 +147,6 @@
                     if (cats.includes("recomendado") && recCount < 5) { gridRec.innerHTML += tarjetaHTML; recCount++; } 
                     if (cats.includes("finalizado") && finCount < 5) { gridFin.innerHTML += tarjetaHTML; finCount++; } 
                     
-                    // LÓGICA PARA EL CARRUSEL (Los 5 primeros juegos del JSON = Recientes)
                     if (heroCount < 5) {
                         const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM";
                         const slideHTML = `
@@ -174,7 +168,6 @@
                 if(finCount === 0) gridFin.innerHTML = '<p>No hay juegos finalizados aún.</p>'; 
                 if(heroCount === 0) heroWrapper.innerHTML = '<div class="swiper-slide"><div class="slide-content"><h2>Bienvenido a Hot Games</h2></div></div>';
 
-                // INICIALIZAR SWIPER DESPUÉS DE CARGAR LOS JUEGOS
                 const swiper = new Swiper('.hero-swiper', {
                     loop: true,
                     autoplay: { delay: 4000, disableOnInteraction: false },
