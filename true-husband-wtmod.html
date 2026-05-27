@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="https://hotgames18.github.io/images/favicon.png">
     <meta property="og:title" content="True Husband + WTMOD - Traducción Española">
     <meta property="og:description" content="Podrás jugar como un hombre de mediana edad que se casó recientemente. Pasó muchos años de su vida d...">
-    <meta property="og:image" content="https://hotgames18.github.io/images/True_Husband-05.gif">
+    <meta property="og:image" content="https://hotgames18.github.io/images/True_Husband-01.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -22,15 +22,20 @@
     <section id="game-detail" class="container">
         <div class="game-detail-grid">
             <div class="game-images">
-                <div class="main-image" id="imagenGrande" style="background-image: url('https://hotgames18.github.io/images/True_Husband-05.gif');"></div>
-                <div class="gallery">
-                    <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-05.gif')" style="background-image: url('https://hotgames18.github.io/images/True_Husband-05.gif');"></div>
-                    <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-01.jpg')" style="background-image: url('https://hotgames18.github.io/images/True_Husband-01.jpg');"></div>
-                    <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-02.jpg')" style="background-image: url('https://hotgames18.github.io/images/True_Husband-02.jpg');"></div>
-                    <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-03.jpg')" style="background-image: url('https://hotgames18.github.io/images/True_Husband-03.jpg');"></div>
-                    <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-04.jpg')" style="background-image: url('https://hotgames18.github.io/images/True_Husband-04.jpg');"></div>
+                <div class="main-image" id="imagenGrande" style="background-image: url('https://hotgames18.github.io/images/True_Husband-01.jpg');" onclick="openLightbox(0)"></div>
+                
+                <div class="spoiler-section">
+                    <button class="btn-spoiler" id="spoilerBtn" onclick="toggleSpoilers()"><i class="fas fa-eye-slash"></i> Mostrar Spoilers +18</button>
+                    <div class="gallery">
+                        <div class="thumb" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-01.jpg'); openLightbox(0)" style="background-image: url('https://hotgames18.github.io/images/True_Husband-01.jpg');"></div>
+                        <div class="thumb thumb-spoiler" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-02.jpg'); openLightbox(1)" style="background-image: url('https://hotgames18.github.io/images/True_Husband-02.jpg');"></div>
+                        <div class="thumb thumb-spoiler" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-03.jpg'); openLightbox(2)" style="background-image: url('https://hotgames18.github.io/images/True_Husband-03.jpg');"></div>
+                        <div class="thumb thumb-spoiler" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-04.jpg'); openLightbox(3)" style="background-image: url('https://hotgames18.github.io/images/True_Husband-04.jpg');"></div>
+                        <div class="thumb thumb-spoiler" onclick="cambiarImg('https://hotgames18.github.io/images/True_Husband-05.gif'); openLightbox(4)" style="background-image: url('https://hotgames18.github.io/images/True_Husband-05.gif');"></div>
+                    </div>
                 </div>
             </div>
+            
             <div class="game-info">
                 <h1>True Husband + WTMOD</h1>
                 <div class="meta-stats">
@@ -38,6 +43,12 @@
                     <span><i class="fas fa-code-branch"></i> v1.5</span>
                     <span><i class="fas fa-gamepad"></i> Ren'Py</span>
                 </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                    <div class="progress-text">Traducción: 100%</div>
+                </div>
+
                 <p class="game-description">Podrás jugar como un hombre de mediana edad que se casó recientemente. Pasó muchos años de su vida dedicado al trabajo y a la carrera, pero un día conoció a su amor.<br>Se aman y disfrutan de la vida juntos. Pero todo cambia cuando aparece en la puerta del personaje principal una joven que parece ser la hija de su esposa.<br>Resulta que tu esposa tiene una hija de un matrimonio anterior. Lo extraño es que ella guarda silencio al respecto.<br>El personaje principal acepta a la niña en su casa, pero muy rápidamente comienza a sentir atracción sexual por ella.<br>¿El personaje principal sucumbirá a la tentación o seguirá siendo un marido fiel? Depende de ti decidir.<br>En las nuevas versiones conocerás nuevos personajes y nuevos retos.</p>
                 
                 <div class="game-categories">
@@ -70,19 +81,76 @@
                     </div>
                 </div>
 
+                
+
                 <div class="vip-section">
                     <h3><i class="fas fa-info-circle"></i> Guía de Instalación</h3>
-                    <p style="color: #ccc; line-height: 1.6;">1. Descarga el archivo.<br>2. Descomprime el archivo (.zip o .rar) en la ubicación que prefieras.<br>3. Ejecuta el archivo .exe (PC) o instala el .apk (Android).<br>4. ¡Disfruta del juego!</p>
+                    <p style="color: #ccc; line-height: 1.6;">1. Descarga el archivo.<br>2. Descomprime el archivo (.zip o .rar).<br>3. Ejecuta el archivo .exe (PC) o instala el .apk (Android).<br>4. ¡Disfruta del juego!</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="container related-section">
+        <h2 class="section-title"><i class="fas fa-gamepad"></i> Juegos Relacionados</h2>
+        <div class="related-grid" id="relatedGrid"><p style="color:#666;">Cargando juegos...</p></div>
+    </section>
+
+    <!-- Lightbox Estructura -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-nav nav-prev" onclick="changeLightboxImg(-1)">&#10094;</span>
+        <img src="" class="lightbox-img" id="lightboxImg">
+        <span class="lightbox-nav nav-next" onclick="changeLightboxImg(1)">&#10095;</span>
+    </div>
+
     <div id="disqus_thread" style="max-width: 1200px; margin: 40px auto; padding: 0 5%;"></div>
     <script>
+        let imagesArray = ['https://hotgames18.github.io/images/True_Husband-01.jpg', 'https://hotgames18.github.io/images/True_Husband-02.jpg', 'https://hotgames18.github.io/images/True_Husband-03.jpg', 'https://hotgames18.github.io/images/True_Husband-04.jpg', 'https://hotgames18.github.io/images/True_Husband-05.gif'];
+        let currentImgIndex = 0;
+
         function cambiarImg(url) { document.getElementById('imagenGrande').style.backgroundImage = 'url(' + url + ')'; }
+        
+        function toggleSpoilers() {
+            let thumbs = document.querySelectorAll('.thumb-spoiler');
+            let btn = document.getElementById('spoilerBtn');
+            let isUnblurred = thumbs[0].classList.contains('unblurred');
+            thumbs.forEach(t => t.classList.toggle('unblurred'));
+            btn.innerHTML = isUnblurred ? '<i class="fas fa-eye-slash"></i> Mostrar Spoilers +18' : '<i class="fas fa-eye"></i> Ocultar Spoilers';
+        }
+
+        function openLightbox(index) {
+            currentImgIndex = index;
+            document.getElementById('lightboxImg').src = imagesArray[index];
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+        function changeLightboxImg(direction) {
+            currentImgIndex += direction;
+            if(currentImgIndex >= imagesArray.length) currentImgIndex = 0;
+            if(currentImgIndex < 0) currentImgIndex = imagesArray.length - 1;
+            document.getElementById('lightboxImg').src = imagesArray[currentImgIndex];
+        }
+
         var disqus_config = function () { this.page.url = window.location.href; this.page.identifier = 'true-husband-wtmod'; };
         (function() { var d = document, s = d.createElement('script'); s.src = 'https://hotgames18.disqus.com/embed.js'; s.setAttribute('data-timestamp', +new Date()); (d.head || d.body).appendChild(s); })();
+
+        async function loadRelated() {
+            try {
+                let currentMotor = 'renpy';
+                let currentName = 'True Husband + WTMOD';
+                let res = await fetch('games.json');
+                let games = await res.json();
+                let related = games.filter(g => g.motor === currentMotor && g.nombre !== currentName).slice(0, 4);
+                let grid = document.getElementById('relatedGrid');
+                grid.innerHTML = '';
+                if(related.length === 0) { grid.innerHTML = '<p>No hay relacionados aún.</p>'; return; }
+                related.forEach(g => {
+                    grid.innerHTML += '<a href="'+g.archivo+'" class="related-card"><div class="related-img" style="background-image: url('+g.img1+');"></div><div class="related-info"><h4>'+g.nombre+'</h4></div></a>';
+                });
+            } catch(e) { console.error(e); }
+        }
+        loadRelated();
     </script>
 
     <footer><p>&copy; 2024 Hot Games. Todos los derechos reservados.</p></footer>
