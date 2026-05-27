@@ -21,7 +21,82 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--b
 .games { background: linear-gradient(to bottom, #05d9e8, #0e8b9e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 15px rgba(5, 217, 232, 0.6); letter-spacing: 6px; margin-left: 2px; }
 .nav-links { list-style: none; display: flex; gap: 20px; } .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: color 0.3s; } .nav-links a:hover { color: var(--neon-blue); }
 
-#inicio { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at center, #1a0a10 0%, var(--bg-dark) 70%); }
+/* --- HEADER Y CARRUSEL ESTILO HOTZONE --- */
+#inicio {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #1a0a10 0%, var(--bg-dark) 70%);
+    padding: 100px 20px 40px 20px; /* Espacio para el navbar y laterales */
+}
+
+.hero-swiper {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo como el catálogo */
+    border-radius: 16px; /* Bordes redondeados */
+    overflow: hidden; /* Hace que las imágenes respeten los bordes */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); /* Sombra para profundidad */
+    border: 1px solid var(--border-glass); /* Borde sutil */
+    height: 65vh; /* Altura controlada, no ocupa toda la pantalla */
+    max-height: 600px;
+}
+
+.swiper-slide {
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Alinea el contenido abajo */
+}
+
+/* Degradado oscuro en la parte inferior para que se lea el texto */
+.swiper-slide::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+    z-index: 1;
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    text-align: left;
+    width: 100%;
+}
+
+.slide-content h2 {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    margin-bottom: 10px;
+}
+
+.slide-content p {
+    color: #ccc;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.slide-content .badge {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Paginación del Swiper en color neón */
+.swiper-pagination-bullet-active {
+    background-color: var(--neon-pink) !important;
+}
+
 .hero-content h1 { font-size: 5rem; letter-spacing: 5px; margin-bottom: 10px; } .hero-content h1 span { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue); }
 .subtitle { font-size: 1.2rem; margin-bottom: 20px; color: #b4b4b4; }
 .warning-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255, 42, 109, 0.2); border: 1px solid var(--neon-pink); color: var(--neon-pink); padding: 8px 20px; border-radius: 30px; font-weight: bold; margin-bottom: 30px; animation: pulse 2s infinite; }
@@ -88,4 +163,8 @@ footer { background: #020202; text-align: center; padding: 20px; font-size: 0.8r
     .hero-content h1 { font-size: 3rem; } .nav-links { display: none; } .game-detail-grid { grid-template-columns: 1fr; } .action-buttons { flex-direction: column; }
     .logo-text { font-size: 1.4rem; } .hot { font-size: 1.6rem; } .games { letter-spacing: 4px; }
     .game-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; } .card-img { height: 200px; }
+    /* Ajustes móvil carrusel */
+    .hero-swiper { height: 50vh; border-radius: 10px; }
+    .slide-content { padding: 20px; }
+    .slide-content h2 { font-size: 1.8rem; }
 }

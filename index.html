@@ -36,10 +36,10 @@
     </nav>
 
     <header id="inicio">
-        <!-- Swiper Slider -->
+        <!-- Swiper Slider (Modificado estilo Hotzone) -->
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
-                <!-- Slide 1 (Cambia la imagen y el título) -->
+                <!-- Slide 1 -->
                 <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');">
                     <div class="slide-content">
                         <span class="badge renpy">Ren'Py</span>
@@ -139,7 +139,8 @@
             loop: true,
             autoplay: { delay: 4000, disableOnInteraction: false },
             pagination: { el: '.swiper-pagination', clickable: true },
-            effect: 'fade'
+            effect: 'fade',
+            fadeEffect: { crossFade: true } // Transición más limpia
         });
     </script>
 </body>
