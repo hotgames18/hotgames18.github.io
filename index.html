@@ -36,36 +36,10 @@
     </nav>
 
     <header id="inicio">
-        <!-- Swiper Slider (Modificado estilo Hotzone) -->
+        <!-- Swiper Slider (Vacío, se llenará con JS) -->
         <div class="swiper hero-swiper">
-            <div class="swiper-wrapper">
-                <!-- Slide 1 -->
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop');">
-                    <div class="slide-content">
-                        <span class="badge renpy">Ren'Py</span>
-                        <h2>Soulmate + WTMOD</h2>
-                        <p>Traducción completa disponible.</p>
-                        <a href="soulmate-wtmod-incesto.html" class="btn-neon">Ver Juego <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=2069&auto=format&fit=crop');">
-                    <div class="slide-content">
-                        <span class="badge rpgm">RPGM</span>
-                        <h2>Wedding Roaming</h2>
-                        <p>Juego finalizado al 100%.</p>
-                        <a href="wedding-roaming.html" class="btn-neon">Ver Juego <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');">
-                    <div class="slide-content">
-                        <span class="badge renpy">Ren'Py</span>
-                        <h2>Próximo Lanzamiento</h2>
-                        <p>Traducción en progreso...</p>
-                        <a href="#catalogo" class="btn-neon">Ver Catálogo <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
+            <div class="swiper-wrapper" id="hero-wrapper">
+                <!-- Las diapositivas se inyectarán aquí automáticamente desde games.json -->
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -123,25 +97,99 @@
         const searchInput = document.getElementById('searchInput');
         const filterBtns = document.querySelectorAll('.filter-btn');
         let activeMotor = 'all';
-        searchInput.addEventListener('input', filterGames);
-        filterBtns.forEach(btn => { btn.addEventListener('click', () => { filterBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeMotor = btn.getAttribute('data-filter'); filterGames(); }); });
-        function filterGames() { const searchTerm = searchInput.value.toLowerCase(); const currentCards = document.querySelectorAll('#gameGrid .game-card'); currentCards.forEach(card => { const name = card.getAttribute("data-name").toLowerCase(); const categories = card.getAttribute("data-categories").toLowerCase(); const motor = card.getAttribute("data-motor").toLowerCase(); const matchesSearch = name.includes(searchTerm) || categories.includes(searchTerm); const matchesMotor = activeMotor === 'all' || motor === activeMotor; card.style.display = (matchesSearch && matchesMotor) ? 'block' : 'none'; }); }
         
-        function crearTarjeta(juego) { const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM"; return `<div class="game-card" data-name="${juego.nombre}" data-categories="${juego.generos}" data-motor="${juego.motor}"><div class="card-img" style="background-image: url('${juego.img1}');"><span class="badge ${juego.motor}">${motorTexto}</span></div><div class="card-info"><h3>${juego.nombre} <span style="font-size: 0.8rem; color: #888;">(${juego.version})</span></h3><p>${juego.resumen.substring(0, 80)}...</p><div class="card-meta"><span><i class="fas fa-calendar"></i> ${juego.fecha}</span></div><a href="${juego.archivo}" class="btn-download"><i class="fas fa-play"></i> Ver Juego</a></div></div>`; }
+        searchInput.addEventListener('input', filterGames);
+        filterBtns.forEach(btn => { 
+            btn.addEventListener('click', () => { 
+                filterBtns.forEach(b => b.classList.remove('active')); 
+                btn.classList.add('active'); 
+                activeMotor = btn.getAttribute('data-filter'); 
+                filterGames(); 
+            }); 
+        });
+
+        function filterGames() { 
+            const searchTerm = searchInput.value.toLowerCase(); 
+            const currentCards = document.querySelectorAll('#gameGrid .game-card'); 
+            currentCards.forEach(card => { 
+                const name = card.getAttribute("data-name").toLowerCase(); 
+                const categories = card.getAttribute("data-categories").toLowerCase(); 
+                const motor = card.getAttribute("data-motor").toLowerCase(); 
+                const matchesSearch = name.includes(searchTerm) || categories.includes(searchTerm); 
+                const matchesMotor = activeMotor === 'all' || motor === activeMotor; 
+                card.style.display = (matchesSearch && matchesMotor) ? 'block' : 'none'; 
+            }); 
+        }
+        
+        function crearTarjeta(juego) { 
+            const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM"; 
+            return `<div class="game-card" data-name="${juego.nombre}" data-categories="${juego.generos}" data-motor="${juego.motor}"><div class="card-img" style="background-image: url('${juego.img1}');"><span class="badge ${juego.motor}">${motorTexto}</span></div><div class="card-info"><h3>${juego.nombre} <span style="font-size: 0.8rem; color: #888;">(${juego.version})</span></h3><p>${juego.resumen.substring(0, 80)}...</p><div class="card-meta"><span><i class="fas fa-calendar"></i> ${juego.fecha}</span></div><a href="${juego.archivo}" class="btn-download"><i class="fas fa-play"></i> Ver Juego</a></div></div>`; 
+        }
         
         async function cargarJuegos() {
-            try { const response = await fetch('games.json'); const juegos = await response.json(); const gridRec = document.getElementById("grid-recomendados"); const gridFin = document.getElementById("grid-finalizados"); const gridMain = document.getElementById("gameGrid"); gridRec.innerHTML = ''; gridFin.innerHTML = ''; gridMain.innerHTML = ''; let recCount = 0; let finCount = 0; juegos.forEach(juego => { const tarjetaHTML = crearTarjeta(juego); gridMain.innerHTML += tarjetaHTML; const cats = juego.generos.toLowerCase(); if (cats.includes("recomendado") && recCount < 5) { gridRec.innerHTML += tarjetaHTML; recCount++; } if (cats.includes("finalizado") && finCount < 5) { gridFin.innerHTML += tarjetaHTML; finCount++; } }); if(recCount === 0) gridRec.innerHTML = '<p>No hay juegos recomendados aún.</p>'; if(finCount === 0) gridFin.innerHTML = '<p>No hay juegos finalizados aún.</p>'; } catch (error) { console.error("Error cargando juegos:", error); document.getElementById("gameGrid").innerHTML = '<p>Error al cargar los juegos.</p>'; }
-        }
-        cargarJuegos();
+            try { 
+                const response = await fetch('games.json'); 
+                const juegos = await response.json(); 
+                const gridRec = document.getElementById("grid-recomendados"); 
+                const gridFin = document.getElementById("grid-finalizados"); 
+                const gridMain = document.getElementById("gameGrid"); 
+                const heroWrapper = document.getElementById("hero-wrapper"); // Contenedor del carrusel
+                
+                gridRec.innerHTML = ''; 
+                gridFin.innerHTML = ''; 
+                gridMain.innerHTML = ''; 
+                heroWrapper.innerHTML = ''; // Limpiamos el carrusel
+                
+                let recCount = 0; 
+                let finCount = 0; 
+                let heroCount = 0; // Contador para el carrusel
 
-        // Iniciar Swiper
-        const swiper = new Swiper('.hero-swiper', {
-            loop: true,
-            autoplay: { delay: 4000, disableOnInteraction: false },
-            pagination: { el: '.swiper-pagination', clickable: true },
-            effect: 'fade',
-            fadeEffect: { crossFade: true } // Transición más limpia
-        });
+                juegos.forEach(juego => { 
+                    const tarjetaHTML = crearTarjeta(juego); 
+                    gridMain.innerHTML += tarjetaHTML; 
+                    const cats = juego.generos.toLowerCase(); 
+                    
+                    if (cats.includes("recomendado") && recCount < 5) { gridRec.innerHTML += tarjetaHTML; recCount++; } 
+                    if (cats.includes("finalizado") && finCount < 5) { gridFin.innerHTML += tarjetaHTML; finCount++; } 
+                    
+                    // LÓGICA PARA EL CARRUSEL (Los 5 primeros juegos del JSON = Recientes)
+                    if (heroCount < 5) {
+                        const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM";
+                        const slideHTML = `
+                            <div class="swiper-slide" style="background-image: url('${juego.img1}');">
+                                <div class="slide-content">
+                                    <span class="badge ${juego.motor}">${motorTexto}</span>
+                                    <h2>${juego.nombre}</h2>
+                                    <p>${juego.resumen.substring(0, 60)}...</p>
+                                    <a href="${juego.archivo}" class="btn-neon">Ver Juego <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        `;
+                        heroWrapper.innerHTML += slideHTML;
+                        heroCount++;
+                    }
+                }); 
+
+                if(recCount === 0) gridRec.innerHTML = '<p>No hay juegos recomendados aún.</p>'; 
+                if(finCount === 0) gridFin.innerHTML = '<p>No hay juegos finalizados aún.</p>'; 
+                if(heroCount === 0) heroWrapper.innerHTML = '<div class="swiper-slide"><div class="slide-content"><h2>Bienvenido a Hot Games</h2></div></div>';
+
+                // INICIALIZAR SWIPER DESPUÉS DE CARGAR LOS JUEGOS
+                const swiper = new Swiper('.hero-swiper', {
+                    loop: true,
+                    autoplay: { delay: 4000, disableOnInteraction: false },
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    effect: 'fade',
+                    fadeEffect: { crossFade: true }
+                });
+
+            } catch (error) { 
+                console.error("Error cargando juegos:", error); 
+                document.getElementById("gameGrid").innerHTML = '<p>Error al cargar los juegos.</p>'; 
+            }
+        }
+        
+        cargarJuegos();
     </script>
 </body>
 </html>
