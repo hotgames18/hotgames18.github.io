@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
@@ -36,11 +35,8 @@
     </nav>
 
     <header id="inicio">
-        <!-- Swiper Slider (Vacío, se llenará con JS) -->
         <div class="swiper hero-swiper">
-            <div class="swiper-wrapper" id="hero-wrapper">
-                <!-- Las diapositivas se inyectarán aquí automáticamente desde games.json -->
-            </div>
+            <div class="swiper-wrapper" id="hero-wrapper"></div>
             <div class="swiper-pagination"></div>
         </div>
     </header>
@@ -91,7 +87,6 @@
         <p class="disclaimer">Todos los juegos aquí listados son propiedad de sus respectivos creadores. Las traducciones son fan-made y sin fines de lucro.</p>
     </footer>
 
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const searchInput = document.getElementById('searchInput');
@@ -123,7 +118,23 @@
         
         function crearTarjeta(juego) { 
             const motorTexto = juego.motor === 'renpy' ? "Ren'Py" : "RPGM"; 
-            return `<div class="game-card" data-name="${juego.nombre}" data-categories="${juego.generos}" data-motor="${juego.motor}"><div class="card-img" style="background-image: url('${juego.img1}');"><span class="badge ${juego.motor}">${motorTexto}</span></div><div class="card-info"><h3>${juego.nombre} <span style="font-size: 0.8rem; color: #888;">(${juego.version})</span></h3><p>${juego.resumen.substring(0, 80)}...</p><div class="card-meta"><span><i class="fas fa-calendar"></i> ${juego.fecha}</span></div><a href="${juego.archivo}" class="btn-download"><i class="fas fa-play"></i> Ver Juego</a></div></div>`; 
+            const views = juego.views || Math.floor(Math.random() * 5000) + 500; 
+            const likes = juego.likes || Math.floor(views / 10); 
+
+            return `<div class="game-card" data-name="${juego.nombre}" data-categories="${juego.generos}" data-motor="${juego.motor}">
+                <div class="card-img" style="background-image: url('${juego.img1}');">
+                    <span class="badge ${juego.motor}">${motorTexto}</span>
+                    <div class="card-stats">
+                        <span class="stat-badge"><i class="fas fa-eye"></i> ${views.toLocaleString()}</span>
+                        <span class="stat-badge" style="color: var(--neon-blue);"><i class="fas fa-thumbs-up"></i> ${likes}</span>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>${juego.nombre} <span style="font-size: 0.8rem; color: #888;">(${juego.version})</span></h3>
+                    <div class="card-meta"><span><i class="fas fa-calendar"></i> ${juego.fecha}</span></div>
+                    <a href="${juego.archivo}" class="btn-download"><i class="fas fa-play"></i> Ver Juego</a>
+                </div>
+            </div>`; 
         }
         
         async function cargarJuegos() {
@@ -183,6 +194,16 @@
         }
         
         cargarJuegos();
+
+        // --- PROTECCIÓN ANTI-COPIA JS ---
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12') { e.preventDefault(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); }
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); }
+            if (e.ctrlKey && e.key === 'u') { e.preventDefault(); }
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); }
+        });
     </script>
 </body>
 </html>
