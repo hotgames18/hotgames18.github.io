@@ -21,7 +21,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--b
 .games { background: linear-gradient(to bottom, #05d9e8, #0e8b9e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 15px rgba(5, 217, 232, 0.6); letter-spacing: 6px; margin-left: 2px; }
 .nav-links { list-style: none; display: flex; gap: 20px; } .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: color 0.3s; } .nav-links a:hover { color: var(--neon-blue); }
 
-/* --- HEADER Y CARRUSEL ESTILO HOTZONE --- */
 #inicio { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: radial-gradient(circle at center, #1a0a10 0%, var(--bg-dark) 70%); padding: 100px 20px 40px 20px; }
 .hero-swiper { width: 100%; max-width: 1200px; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); border: 1px solid var(--border-glass); height: 65vh; max-height: 600px; }
 .swiper-slide { background-size: cover; background-position: center top; position: relative; display: flex; align-items: flex-end; }
@@ -46,12 +45,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--b
 .filter-btn { padding: 8px 20px; background: transparent; color: #aaa; border: 1px solid #333; border-radius: 20px; cursor: pointer; transition: all 0.3s; font-weight: bold; }
 .filter-btn:hover { border-color: var(--neon-blue); color: var(--neon-blue); } .filter-btn.active { background: var(--neon-blue); color: var(--bg-dark); border-color: var(--neon-blue); }
 
-/* --- CATÁLOGO PRO (SUPERANDO A HOTZONE) --- */
 .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
 .game-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-glass); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; }
 .game-card:hover { transform: translateY(-10px); box-shadow: 0 20px 30px rgba(0,0,0,0.6), 0 0 15px rgba(255, 42, 109, 0.4); border-color: var(--neon-pink); }
 .card-img { height: 280px; background-size: cover; background-position: center top; position: relative; transition: transform 0.5s ease, filter 0.5s ease; overflow: hidden; }
-/* EFECTO LUPA ZOOM */
 .game-card:hover .card-img { transform: scale(1.2); filter: brightness(1.1); }
 .card-img::after { content: '\f00e'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 2.5rem; color: white; background: rgba(255, 42, 109, 0.6); width: 70px; height: 70px; border-radius: 50%; display: flex; justify-content: center; align-items: center; opacity: 0; transition: all 0.3s ease; pointer-events: none; text-shadow: 0 2px 4px rgba(0,0,0,0.5); z-index: 2; }
 .game-card:hover .card-img::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -60,6 +57,9 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--b
 .badge.renpy { top: 10px; left: 10px; background: var(--neon-pink); color: white; }
 .badge.rpgm { top: 10px; left: 10px; background: var(--neon-blue); color: var(--bg-dark); }
 .badge.vip-badge { top: 10px; right: 10px; background: var(--vip-gold); color: #000; }
+.card-stats { position: absolute; bottom: 10px; left: 10px; display: flex; gap: 10px; z-index: 3; }
+.stat-badge { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; color: white; display: flex; align-items: center; gap: 4px; }
+
 .card-info { padding: 15px; background: var(--bg-card); position: relative; z-index: 4; }
 .card-info h3 { font-size: 1rem; margin-bottom: 5px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .card-info p { display: none; }
@@ -75,40 +75,54 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--b
 
 .game-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 100px; } 
 .game-images .main-image { height: 450px; background-size: cover; background-position: center; border-radius: 10px; border: 1px solid var(--border-glass); cursor: pointer; }
-.gallery { display: flex; gap: 10px; margin-top: 10px; } .thumb { flex: 1; height: 80px; background-size: cover; background-position: center; border-radius: 5px; border: 1px solid var(--border-glass); cursor: pointer; transition: border 0.3s; } .thumb:hover { border-color: var(--neon-blue); }
+
+/* --- GALERÍA DETALLE CON EFECTO LUPA Y SPOILER --- */
+.gallery { display: flex; gap: 10px; margin-top: 10px; }
+.thumb { 
+    flex: 1; height: 80px; background-size: cover; background-position: center; border-radius: 5px; 
+    border: 1px solid var(--border-glass); cursor: pointer; transition: all 0.3s ease; 
+    position: relative; overflow: hidden; z-index: 1;
+}
+.thumb::after { 
+    content: '\f00e'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; 
+    top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 1.2rem; color: white; 
+    background: rgba(5, 217, 232, 0.7); width: 35px; height: 35px; border-radius: 50%; 
+    display: flex; justify-content: center; align-items: center; opacity: 0; transition: all 0.3s ease; 
+    pointer-events: none; z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.thumb:hover { 
+    border-color: var(--neon-blue); transform: scale(1.05); 
+}
+.thumb:hover::after { 
+    opacity: 1; transform: translate(-50%, -50%) scale(1); 
+}
+
+/* Lógica del Spoiler: Ocultar lupa y zoom si está borroso */
+.thumb-spoiler { filter: blur(15px); transition: filter 0.4s ease, transform 0.3s ease; }
+.thumb-spoiler.unblurred { filter: none; }
+.thumb-spoiler:not(.unblurred):hover { transform: none; border-color: var(--border-glass); }
+.thumb-spoiler:not(.unblurred)::after, .thumb-spoiler:not(.unblurred):hover::after { 
+    opacity: 0; transform: translate(-50%, -50%) scale(0); 
+}
+
 .game-info h1 { font-size: 2.5rem; margin: 10px 0 20px 0; color: white; } .meta-stats { display: flex; gap: 20px; color: #888; font-size: 0.9rem; margin-bottom: 20px; border-bottom: 1px solid var(--border-glass); padding-bottom: 20px; }
-.game-description { line-height: 1.6; margin-bottom: 30px; } .game-categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; } .tag { background: var(--tag-bg); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--border-glass); color: #ccc; }
+.game-description { line-height: 1.6; margin-bottom: 30px; }
+
+.game-categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; } 
+.tag { background: linear-gradient(180deg, #2a2a2a, #1a1a1a); color: #ccc; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; border-bottom: 3px solid #444; border-top: 1px solid #444; font-weight: 600; transition: all 0.2s; cursor: default; }
+.tag:hover { transform: translateY(-2px); border-bottom-color: var(--neon-blue); color: var(--neon-blue); box-shadow: 0 4px 10px rgba(5, 217, 232, 0.3); background: #1a1a2e; }
+
 .reactions-box { display: flex; gap: 15px; margin: 20px 0; padding: 15px 0; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass); }
 .reaction-btn { background: var(--bg-card); border: 1px solid var(--border-glass); color: #888; padding: 10px 25px; border-radius: 30px; cursor: pointer; font-size: 1rem; font-weight: bold; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
 .like-btn:hover { color: #05d9e8; border-color: #05d9e8; box-shadow: 0 0 10px rgba(5, 217, 232, 0.3); } .dislike-btn:hover { color: #ff2a6d; border-color: #ff2a6d; box-shadow: 0 0 10px rgba(255, 42, 109, 0.3); }
 
-/* --- BOTONES DE DESCARGA 3D PREMIUM (MEJOR QUE HOTZONE) --- */
 .download-section, .vip-section { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-glass); } .download-section h3, .vip-section h3 { font-size: 1.2rem; margin-bottom: 15px; color: white; }
 .action-buttons { display: flex; gap: 20px; } 
-.big-btn { 
-    font-size: 1.1rem; padding: 18px 15px; flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; 
-    border-radius: 8px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; 
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden; 
-    border: none; cursor: pointer; box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-}
-/* Botón PC */
-.big-btn.btn-neon { 
-    background: linear-gradient(180deg, #1a1a2e, #0f0f1a); color: var(--neon-blue); 
-    border-bottom: 4px solid #0e8b9e; border-top: 1px solid rgba(5, 217, 232, 0.3);
-}
-.big-btn.btn-neon:hover { 
-    background: var(--neon-blue); color: var(--bg-dark); transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(5, 217, 232, 0.5); border-bottom-color: var(--neon-blue);
-}
-/* Botón APK */
-.big-btn.btn-apk { 
-    background: linear-gradient(180deg, #1a2e1a, #0f1a0f); color: var(--android-green); 
-    border-bottom: 4px solid #2da65a; border-top: 1px solid rgba(61, 220, 132, 0.3);
-}
-.big-btn.btn-apk:hover { 
-    background: var(--android-green); color: var(--bg-dark); transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(61, 220, 132, 0.5); border-bottom-color: var(--android-green);
-}
+.big-btn { font-size: 1.1rem; padding: 18px 15px; flex: 1; display: flex; align-items: center; justify-content: center; gap: 12px; border-radius: 8px; text-decoration: none; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden; border: none; cursor: pointer; box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
+.big-btn.btn-neon { background: linear-gradient(180deg, #1a1a2e, #0f0f1a); color: var(--neon-blue); border-bottom: 4px solid #0e8b9e; border-top: 1px solid rgba(5, 217, 232, 0.3); }
+.big-btn.btn-neon:hover { background: var(--neon-blue); color: var(--bg-dark); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(5, 217, 232, 0.5); border-bottom-color: var(--neon-blue); }
+.big-btn.btn-apk { background: linear-gradient(180deg, #1a2e1a, #0f1a0f); color: var(--android-green); border-bottom: 4px solid #2da65a; border-top: 1px solid rgba(61, 220, 132, 0.3); }
+.big-btn.btn-apk:hover { background: var(--android-green); color: var(--bg-dark); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(61, 220, 132, 0.5); border-bottom-color: var(--android-green); }
 
 .vip-hint { font-size: 0.85rem; color: #888; margin-bottom: 15px; } .vip-hint a { color: var(--vip-gold); text-decoration: none; font-weight: bold; }
 .comments-section { margin-top: 60px; border-top: 1px solid var(--border-glass); padding-top: 40px; }
@@ -117,7 +131,6 @@ footer { background: #020202; text-align: center; padding: 20px; font-size: 0.8r
 #contacto { text-align: center; } .contact-text { text-align: center; font-size: 1.1rem; margin-bottom: 30px; }
 .disclaimer { font-size: 0.7rem; color: #444; margin-top: 10px; }
 
-/* --- NUEVAS MEJORAS: PÁGINA DE DETALLE --- */
 .progress-container { margin: 20px 0; background: #222; border-radius: 20px; overflow: hidden; height: 24px; position: relative; border: 1px solid var(--border-glass); }
 .progress-bar { height: 100%; background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); border-radius: 20px; transition: width 0.5s ease; box-shadow: 0 0 15px rgba(5, 217, 232, 0.4); }
 .progress-text { position: absolute; width: 100%; text-align: center; top: 50%; left: 0; transform: translateY(-50%); font-weight: bold; font-size: 0.85rem; color: white; text-shadow: 1px 1px 2px black; }
@@ -125,8 +138,6 @@ footer { background: #020202; text-align: center; padding: 20px; font-size: 0.8r
 .spoiler-section { margin-top: 15px; text-align: center; }
 .btn-spoiler { background: rgba(255, 42, 109, 0.2); border: 1px solid var(--neon-pink); color: var(--neon-pink); padding: 10px 25px; border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; margin-bottom: 15px; transition: all 0.3s; }
 .btn-spoiler:hover { background: var(--neon-pink); color: white; }
-.thumb-spoiler { filter: blur(15px); transition: filter 0.4s ease; cursor: pointer; }
-.thumb-spoiler.unblurred { filter: none; cursor: pointer; }
 
 .lightbox-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.9); z-index: 2000; display: none; justify-content: center; align-items: center; flex-direction: column; }
 .lightbox-overlay.active { display: flex; }
